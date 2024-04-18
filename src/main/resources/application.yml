@@ -9,3 +9,9 @@ spring:
     url: jdbc:postgresql://localhost:5432/mytodo
     username: postgres
     password: Passwort208
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/ILV

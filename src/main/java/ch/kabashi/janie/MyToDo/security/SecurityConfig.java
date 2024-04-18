@@ -28,30 +28,30 @@ public class SecurityConfig {
             "/hello"
     };
 
-    @Bean
-    protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
-        CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
-        requestHandler.setCsrfRequestAttributeName(null);
-        http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(AUTH_WHITELIST).permitAll()
-                .anyRequest().authenticated())
-                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(new AuthenticationRoleConverter())))
-                .csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).csrfTokenRequestHandler(requestHandler))
-                .cors();
-        return http.build();
-    }
+     @Bean
+     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
+         CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
+         requestHandler.setCsrfRequestAttributeName(null);
+         http.authorizeHttpRequests(authorize -> authorize
+                 .requestMatchers(AUTH_WHITELIST).permitAll()
+                 .anyRequest().authenticated())
+                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(new AuthenticationRoleConverter())))
+                 .csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).csrfTokenRequestHandler(requestHandler))
+                 .cors();
+         return http.build();
+     }
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH", "OPTIONS")
-                        .allowedOrigins("http://localhost:4200");
-            }
-        };
-    }
+     @Bean
+     public WebMvcConfigurer corsConfigurer() {
+         return new WebMvcConfigurer() {
+             @Override
+             public void addCorsMappings(CorsRegistry registry) {
+                 registry.addMapping("/**")
+                         .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH", "OPTIONS")
+                         .allowedOrigins("http://localhost:4200");
+             }
+         };
+     }
 
     @GetMapping("/oidc-principal")
     public OidcUser getOidcUserPrincipal(

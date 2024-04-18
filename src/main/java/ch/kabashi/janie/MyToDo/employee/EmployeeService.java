@@ -17,7 +17,7 @@ public class EmployeeService {
     }
 
     public List<Employee> getEmployees() {
-        return repository.findByOrderByNameAscFirstnameAsc();
+        return repository.findByOrderByNameAscFirstNameAsc();
     }
 
     public Employee getEmployee(Long id) {
