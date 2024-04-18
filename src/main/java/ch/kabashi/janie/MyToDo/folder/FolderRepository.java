@@ -1,5 +1,11 @@
 package ch.kabashi.janie.MyToDo.folder;
 
-public class FolderRepository {
-    
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface FolderRepository extends JpaRepository<Folder, Long> {
+    List<Folder> findByOrderByTitleAsc();
 }
