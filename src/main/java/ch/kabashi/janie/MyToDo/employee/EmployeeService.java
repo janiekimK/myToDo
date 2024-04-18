@@ -1,9 +1,8 @@
 package ch.kabashi.janie.MyToDo.employee;
 
 import ch.kabashi.janie.MyToDo.base.MessageResponse;
-import jakarta.persistence.EntityNotFoundException;
+import ch.kabashi.janie.MyToDo.storage.EntityNotFoundException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +12,6 @@ public class EmployeeService {
 
     private final EmployeeRepository repository;
 
-    @Autowired
     public EmployeeService(EmployeeRepository repository) {
         this.repository = repository;
     }
@@ -24,6 +22,7 @@ public class EmployeeService {
 
     public Employee getEmployee(Long id) {
         return repository.findById(id)
+
                 .orElseThrow(() -> new EntityNotFoundException(id, Employee.class));
     }
 
