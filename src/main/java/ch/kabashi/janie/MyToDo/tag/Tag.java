@@ -18,6 +18,9 @@ public class Tag {
     @Column(length = 50, nullable = false)
     private String name;
 
+    @Column(length = 255)
+    private String description;
+
     public Tag() {
     }
 }
