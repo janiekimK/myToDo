@@ -63,10 +63,10 @@ class RestControllerTests {
 
         String accessToken = obtainAccessToken();
 
-        api.perform(get("/api/employee").header("Authorization", "Bearer " + accessToken)
+        api.perform(get("/api/employees").header("Authorization", "Bearer " + accessToken)
                         .with(csrf()))
                 .andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("Max")));
+                .andExpect(content().string(containsString("Mustermann")));
     }
 
     @Test
@@ -86,8 +86,8 @@ class RestControllerTests {
                         .content(body)
                         .header("Authorization", "Bearer " + accessToken)
                         .with(csrf()))
-                .andDo(print()).andExpect(status().isOk())
-                 .andExpect(content().string(containsString("Maxine")));
+                .andDo(print()).andExpect(status().isCreated())
+                 .andExpect(content().string(containsString("Stefan")));
     }
 
     private String obtainAccessToken() {
