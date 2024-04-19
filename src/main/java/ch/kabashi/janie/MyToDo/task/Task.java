@@ -46,7 +46,7 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
-    private Employee assignee;
+    private Employee employee;
 
     @ManyToMany
     @JoinTable(name = "task_tags",

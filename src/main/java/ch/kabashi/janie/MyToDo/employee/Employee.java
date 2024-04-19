@@ -34,7 +34,7 @@ public class Employee {
     public Employee() {
     }
 
-    @OneToMany(mappedBy = "assignee")
+    @OneToMany(mappedBy = "employee")
     private List<Task> assignedTasks;
 
 }
