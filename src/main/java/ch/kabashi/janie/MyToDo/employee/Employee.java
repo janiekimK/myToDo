@@ -1,10 +1,15 @@
 package ch.kabashi.janie.MyToDo.employee;
 
 import lombok.Data;
+
+import java.util.List;
+
+import ch.kabashi.janie.MyToDo.task.Task;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
@@ -28,4 +33,8 @@ public class Employee {
 
     public Employee() {
     }
+
+    @OneToMany(mappedBy = "assignee")
+    private List<Task> assignedTasks;
+
 }

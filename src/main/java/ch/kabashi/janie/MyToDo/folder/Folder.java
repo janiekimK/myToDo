@@ -1,10 +1,15 @@
 package ch.kabashi.janie.MyToDo.folder;
 
 import lombok.Data;
+
+import java.util.List;
+
+import ch.kabashi.janie.MyToDo.task.Task;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Data
 @Entity
@@ -22,4 +27,8 @@ public class Folder {
 
     public Folder() {
     }
+
+    @OneToMany(mappedBy = "folder")
+    private List<Task> tasks;
+
 }
